@@ -7,9 +7,21 @@ RUN apk update \
       && apk add --no-cache aria2 \
       && mkdir -p /root/aria2/tmp \
       && mkdir -p /root/downloads \
-      && touch /root/downloads/aria2.session
+      && mkdir -p /root/cert \
       
-COPY conf/aria2.conf /root/aria2/tmp/aria2.conf
+
 COPY conf/run.sh /root/run.sh
+
+RUN chmod +x /root/run.sh
+
+VOLUME /root/aria2/tmp/
+VOLUME /root/downloads/
+VOLUME /root/cert/
+
+EXPOSE 6800
+EXPOSE 6881
+EXPOSE 6882
+
+CMD /root/run.sh
 
 
