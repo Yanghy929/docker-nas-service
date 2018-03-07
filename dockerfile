@@ -13,14 +13,9 @@ COPY conf/run.sh /root/run.sh
 
 RUN chmod +x /root/run.sh
 
-VOLUME /root/aria2/
-VOLUME /root/aria2/tmp/
-VOLUME /root/downloads/
-VOLUME /root/cert/
+VOLUME ["/root/aria2/","/root/aria2/tmp/","/root/downloads/","/root/cert/"]
 
-EXPOSE 6800
-EXPOSE 6900
-EXPOSE 6999
+EXPOSE 6800 6900 6999
 
 CMD /root/run.sh
 
